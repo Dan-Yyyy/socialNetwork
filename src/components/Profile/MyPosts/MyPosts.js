@@ -1,16 +1,26 @@
-// import myPosts from './MyPosts.module.sass';
+import myPosts from './MyPosts.module.sass';
+import React from 'react';
 import Post from './Post/Post';
 
-const MyPosts = () => {
+const MyPosts = (props) => {
+
+	let newPostElement = React.createRef();
+
+	let addPost = () => {
+		let text = newPostElement.current.value;
+		alert(text);
+	}
+
 	return(
-		<div className="posts">
-			<span className="posts__title">My posts</span>
-			<form action="">
-				<textarea name="" id="" cols="30" rows="10"></textarea>
-				<input type="submit" />
-			</form>
-			<Post message="Text for post 1"/>
-			<Post message="Text for post 2"/>
+		<div className={ myPosts.posts }>
+			<h3 className={ myPosts.posts__title}>My posts</h3>
+			<div className={ myPosts.posts__container }>
+				<div className={ myPosts.posts__newPost }>
+					<textarea name="" id="" cols="30" rows="10" ref={ newPostElement }></textarea>
+					<button onClick={ addPost }>Добавить</button>
+				</div>
+				{props.postData.map(postItem =>	<Post id={postItem.id} message={postItem.message} likesCount={postItem.likesCount}/> )}
+			</div>
 		</div>        
 	)
 };

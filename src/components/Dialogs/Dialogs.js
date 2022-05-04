@@ -1,26 +1,20 @@
 import dialogs from './Dialogs.module.sass';
+import DialogItem from './DialogItem/DialogItem';
+import Message from  './Message/Message';
 
-const Dialogs = () => {
+const Dialogs = (props) => {
+
   return (
     <div className={dialogs.dialogs}>
       <div className={ dialogs.dialogs__items }>
-        <div className="dialog">
-          Irina
-        </div>
-        <div className="dialog">
-          Olga
-        </div>
-        <div className="dialog">
-          Sveta
-        </div>
-        <div className="dialog">
-          Tania
-        </div>
+        { props.state.dialogData.map(dialog => <DialogItem name={ dialog.name } id={ dialog.id }/> )}
       </div>
       <div className="messages">
-        <div className="message">Test1</div>
-        <div className="message">Test2</div>
-        <div className="message">Test3</div>
+        { props.state.messagesData.map(message => <Message message={ message.message } id={ message.id }/> )}
+        <div>
+          <textarea name="" id="" cols="30" rows="3"></textarea>
+          <button>Отправить</button>
+        </div>
       </div>
     </div>
   )

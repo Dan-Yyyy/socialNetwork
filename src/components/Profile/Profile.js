@@ -1,21 +1,13 @@
-import profile from './Profile.module.sass';
-import imageContent from './../../image.jpg';
 import MyPosts from './MyPosts/MyPosts';
+import profile from './Profile.module.sass';
+import ProfileInfo from './ProfileInfo/ProfileInfo';
 
-const Profile = () => {
+const Profile = ({state}) => {
     return(
-        <div className=''>
-          <div className={ profile.image }>
-            <img src={imageContent} alt="content" />
-          </div>
-          <div className="user">
-            <img src="" alt="" />
-            <div className="user__description">
-
-            </div>
-          </div>
-          <MyPosts />
-        </div>
+      <div className=''>
+        <ProfileInfo />
+        <MyPosts postData={ state.postData }/>
+      </div>
     )
 };
 
