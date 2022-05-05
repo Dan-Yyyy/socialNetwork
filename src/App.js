@@ -17,8 +17,8 @@ function App(props) {
           <Navbar />
           <div className='container'>
             <Routes>
-              <Route exact path='/profile' element={ <Profile state={ props.state.profilePage }/> } />
-              <Route exact path='/dialogs' element={ <Dialogs state={props.state.dialogPage } /> } />
+              <Route exact path='/profile' element={ <Profile state={ props.state } dispatch={ props.dispatch }/> } />
+              <Route exact path='/dialogs' element={ <Dialogs state={ props.state.dialogPage } /> } />
               <Route exact path='/news' element={ <News/> } />
               <Route exact path='/music' element={ <Music/> } />
               <Route exact path='/settings' element={ <Settings/> } />

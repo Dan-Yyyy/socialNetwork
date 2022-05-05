@@ -1,14 +1,18 @@
 import myPosts from './MyPosts.module.sass';
 import React from 'react';
 import Post from './Post/Post';
+import { addPostActionCreator, updateNewPostActionCreator } from '../../../redux/state';
 
-const MyPosts = (props) => {
-
+const MyPosts = ({ data, dispatch }) => {
 	let newPostElement = React.createRef();
 
 	let addPost = () => {
+		dispatch(addPostActionCreator());
+	};
+
+	let chengeText = () => {
 		let text = newPostElement.current.value;
-		alert(text);
+		dispatch(updateNewPostActionCreator(text));
 	}
 
 	return(
@@ -16,10 +20,12 @@ const MyPosts = (props) => {
 			<h3 className={ myPosts.posts__title}>My posts</h3>
 			<div className={ myPosts.posts__container }>
 				<div className={ myPosts.posts__newPost }>
-					<textarea name="" id="" cols="30" rows="10" ref={ newPostElement }></textarea>
+					<textarea ref={ newPostElement } value={ data.profilePage.newPost } onChange={ chengeText }/>
 					<button onClick={ addPost }>Добавить</button>
 				</div>
-				{props.postData.map(postItem =>	<Post id={postItem.id} message={postItem.message} likesCount={postItem.likesCount}/> )}
+				<div className={ myPosts.posts__items }>
+					{ data.profilePage.postData.map(postItem =>	<Post id={postItem.id} message={postItem.message} likesCount={postItem.likesCount}/> )}
+				</div>
 			</div>
 		</div>        
 	)

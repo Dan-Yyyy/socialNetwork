@@ -5,10 +5,12 @@ const Post = (props) => {
   return (
     <div className={ post.post } >
       <img src={ user } alt='userImage' />
-      <div className='' > 
-        { props.message } 
-        <span> likes - { props.likesCount } </span>
-      </div> 
+      <div className={ post.post__item }>
+        <div className={ post.post__message } > 
+          { props.message } 
+        </div> 
+        <div className={ post.post__likes }> likes - { props.likesCount } </div>
+      </div>
     </div>
   )
 };
