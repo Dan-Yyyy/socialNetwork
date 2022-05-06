@@ -1,5 +1,5 @@
 import MyPosts from './MyPosts/MyPosts';
-import profile from './Profile.module.sass';
+// import profile from './Profile.module.sass';
 import ProfileInfo from './ProfileInfo/ProfileInfo';
 
 const Profile = (props) => {
@@ -11,4 +11,4 @@ const Profile = (props) => {
   )
 };
 
-export default Profile;
+export default Profile; 

@@ -1,7 +1,7 @@
 import myPosts from './MyPosts.module.sass';
 import React from 'react';
 import Post from './Post/Post';
-import { addPostActionCreator, updateNewPostActionCreator } from '../../../redux/state';
+import { addPostActionCreator, updateNewPostActionCreator } from '../../../redux/profileReducer';
 
 const MyPosts = ({ data, dispatch }) => {
 	let newPostElement = React.createRef();
