@@ -12,6 +12,7 @@ const initState = {
 const profileReduser = (state = initState, action) => {
   switch(action.type) {
     case ADD_POST: 
+      
       let newPost = {
         id: 3,
         message: state.newPost, 

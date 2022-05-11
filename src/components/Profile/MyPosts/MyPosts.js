@@ -18,11 +18,11 @@ const MyPosts = (props) => {
 			<h3 className={ myPosts.posts__title}>My posts</h3>
 			<div className={ myPosts.posts__container }>
 				<div className={ myPosts.posts__newPost }>
-					<textarea value={ props.state.newPost } onChange={ chengeText }/>
+					<textarea value={ props.profilePage.newPost } onChange={ chengeText }/>
 					<button onClick={ addPost }>Добавить</button>
 				</div>
 				<div className={ myPosts.posts__items }>
-					{ props.state.postData.map(postItem =>	<Post id={postItem.id} message={postItem.message} likesCount={postItem.likesCount}/> )}
+					{ props.profilePage.postData.map(postItem =>	<Post key={postItem.id} message={postItem.message} likesCount={postItem.likesCount}/> )}
 				</div>
 			</div>
 		</div>        

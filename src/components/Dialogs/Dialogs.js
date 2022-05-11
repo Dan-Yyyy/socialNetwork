@@ -4,6 +4,7 @@ import DialogItem from './DialogItem/DialogItem';
 import Message from  './Message/Message';
 
 const Dialogs = ( props ) => {
+  // debugger
 
 	let addMessage = () => {
 		props.addNewMessage();
@@ -15,12 +16,12 @@ const Dialogs = ( props ) => {
 	}
   
   return (
-    <div className={dialogs.dialogs}>
+    <div className={ dialogs.dialogs }>
       <div className={ dialogs.dialogs__items }>
-        { props.state.dialogData.map(dialog => <DialogItem name={ dialog.name } id={ dialog.id }/> )}
+        { props.state.dialogData?.map(dialog => <DialogItem name={ dialog.name } key={ dialog.id }/> )}
       </div>
       <div className="messages">
-        { props.state.messagesData.map(message => <Message message={ message.message } id={ message.id }/> )}
+        { props.state.messagesData?.map(message => <Message message={ message.message } key={ message.id }/> )}
         <div>
           <textarea value={ props.state.newMessage } onChange={ chengeText }></textarea>
           <button onClick={ addMessage }>Отправить</button>
