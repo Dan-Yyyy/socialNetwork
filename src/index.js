@@ -1,24 +1,28 @@
-import store from './redux/store';
 import { BrowserRouter } from 'react-router-dom';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
 import './index.css';
+import { store } from './redux/reduxStore';
 
 let rerenderEntireTree = (state) =>{
+  // debugger;
   const root = ReactDOM.createRoot(document.getElementById('root'));
 
   root.render(
     <React.StrictMode>
       <BrowserRouter>
-        <App state={ state } dispatch={ store.dispatch.bind(store) } />
+        <App state={ state } dispatch={ store.dispatch.bind(store) } store={ store }/>
       </BrowserRouter>
     </React.StrictMode>
   );
 };
 
 rerenderEntireTree(store.getState());
-store.subscibe(rerenderEntireTree);
+store.subscribe(() => {
+  let state = store.getState();
+  rerenderEntireTree(state);
+});
 
 
 // If you want to start measuring performance in your app, pass a function

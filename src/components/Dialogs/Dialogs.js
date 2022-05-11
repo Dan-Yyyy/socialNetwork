@@ -2,17 +2,16 @@ import React from 'react';
 import dialogs from './Dialogs.module.sass';
 import DialogItem from './DialogItem/DialogItem';
 import Message from  './Message/Message';
-import { addMessageActionCreator, updateNewMessageActionCreator } from '../../redux/dialogReducer';
 
-const Dialogs = (props) => {
-  // debugger;
+const Dialogs = ( props ) => {
+
 	let addMessage = () => {
-		props.dispatch(addMessageActionCreator());
+		props.addNewMessage();
 	};
 
 	let chengeText = (e) => {
 		let text = e.target.value;
-		props.dispatch(updateNewMessageActionCreator(text));
+		props.updateMessage(text);
 	}
   
   return (

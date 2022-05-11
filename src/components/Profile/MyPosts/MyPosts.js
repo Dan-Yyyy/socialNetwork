@@ -1,18 +1,16 @@
 import myPosts from './MyPosts.module.sass';
 import React from 'react';
 import Post from './Post/Post';
-import { addPostActionCreator, updateNewPostActionCreator } from '../../../redux/profileReducer';
 
-const MyPosts = ({ data, dispatch }) => {
-	let newPostElement = React.createRef();
-
+const MyPosts = (props) => {
+	
 	let addPost = () => {
-		dispatch(addPostActionCreator());
+		props.addNewPost();
 	};
 
-	let chengeText = () => {
-		let text = newPostElement.current.value;
-		dispatch(updateNewPostActionCreator(text));
+	let chengeText = (e) => {
+		let text = e.target.value;
+		props.updateNewPostText(text);
 	}
 
 	return(
@@ -20,11 +18,11 @@ const MyPosts = ({ data, dispatch }) => {
 			<h3 className={ myPosts.posts__title}>My posts</h3>
 			<div className={ myPosts.posts__container }>
 				<div className={ myPosts.posts__newPost }>
-					<textarea ref={ newPostElement } value={ data.profilePage.newPost } onChange={ chengeText }/>
+					<textarea value={ props.state.newPost } onChange={ chengeText }/>
 					<button onClick={ addPost }>Добавить</button>
 				</div>
 				<div className={ myPosts.posts__items }>
-					{ data.profilePage.postData.map(postItem =>	<Post id={postItem.id} message={postItem.message} likesCount={postItem.likesCount}/> )}
+					{ props.state.postData.map(postItem =>	<Post id={postItem.id} message={postItem.message} likesCount={postItem.likesCount}/> )}
 				</div>
 			</div>
 		</div>        
