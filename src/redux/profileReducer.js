@@ -12,19 +12,17 @@ const initState = {
 const profileReduser = (state = initState, action) => {
   switch(action.type) {
     case ADD_POST: 
-      
-      let newPost = {
-        id: 3,
-        message: state.newPost, 
-        likesCount: 0
-      };
-
-      state.postData.push(newPost);
-      state.newPost = '';
-      return state;
+      let post = state.newPost;
+      return {
+        ...state,
+        newPost: '',
+        postData: [...state.postData, {id: state.postData.length+1, message: post, likesCount: 0}],
+      }
     case UPDATE_NEW_POST: 
-      state.newPost = action.newPost;
-      return state;
+      return {
+        ...state,
+        newPost: action.newPost
+      };
     default: 
       return state;
   }
