@@ -1,9 +1,10 @@
+import React from 'react';
 import { NavLink } from 'react-router-dom';
 import navbar from './Navbar.module.sass';
 import { AiOutlineUser } from 'react-icons/ai';
 import { BiMessageSquare, BiNews } from 'react-icons/bi';
 import { BsHeadphones } from 'react-icons/bs';
-import { FiSettings } from 'react-icons/fi';
+import { FiSettings, FiUsers } from 'react-icons/fi';
 
 const Navbar = () => {
     return(
@@ -31,6 +32,12 @@ const Navbar = () => {
                     <NavLink to="/music" className={({isActive}) => isActive ? navbar["navigation__link--active"] : null }>
                         <BsHeadphones size={ 16 } />
                         Music
+                    </NavLink>
+                </li>
+                <li className={ navbar.navigation__item }>
+                    <NavLink to="/users" className={({isActive}) => isActive ? navbar["navigation__link--active"] : null }>
+                        <FiUsers size={ 16 } />
+                        Find users
                     </NavLink>
                 </li>
                 <li className={ navbar.navigation__item }>

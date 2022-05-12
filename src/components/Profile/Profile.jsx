@@ -1,3 +1,4 @@
+import React from 'react';
 import MyPostsContainer from './MyPosts/MyPostsContainer';
 // import profile from './Profile.module.sass';
 import ProfileInfo from './ProfileInfo/ProfileInfo';

@@ -1,4 +1,5 @@
 import settings from './Settings.module.sass';
+import React from 'react';
 
 const Settings = () => {
   return(

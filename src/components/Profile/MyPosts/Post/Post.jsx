@@ -1,3 +1,4 @@
+import React from 'react';
 import post from './Post.module.sass';
 import user from './../../../../user.png';
 

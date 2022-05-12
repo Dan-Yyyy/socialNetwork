@@ -1,3 +1,4 @@
+import React from 'react';
 import profileInfo from './ProfileInfo.module.sass';
 import imageContent from './../../../image.jpg';
 
