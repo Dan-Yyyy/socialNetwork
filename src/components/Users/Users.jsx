@@ -1,8 +1,16 @@
 import React from "react";
 import users from './Users.module.sass';
+import * as axios from 'axios';
+import userSmallAva from './../../user.png';
 
 const Users = ( props ) => {
-  // debugger
+
+  if(props.state.length === 0) {
+    axios.get('https://social-network.samuraijs.com/api/1.0/users').then(response => {
+      props.setUsers(response.data.items)
+    })
+  }
+
   return(
     <div>
       <h3 className={ users.title }>Users</h3>
@@ -11,21 +19,16 @@ const Users = ( props ) => {
           <div className={ users.users } key={ user.id }>
             <div className={ users.users__item }>
               <div className={ users.image }>
-                <img src={ user.imgUrl } alt="" />
+                <img src={ user.photos.small != null ? user.photos.small : userSmallAva } alt="userAvatar" />
                 { 
-                  user.followStatus 
+                  user.fololowed 
                   ? <button className={ users.button } onClick={ () => { props.unFollow(user.id) } }>Unfollow</button> 
                   : <button className={ users.button } onClick={ () => { props.follow(user.id) } }>Follow</button>
                 } 
               </div>
               <div className={ users.content }>
-                <div className={ users.content__block }>
-                  <div className={ users.name }> { user.fullName } </div>
-                  <div className={ users.status }> { user.status } </div>
-                </div>
-                <div className={ users.content__block }>
-                  <div className={ users.location }> { user.location.country }, { user.location.city } </div>
-                </div>
+                <div className={ users.name }> { user.name } </div>
+                <div className={ users.status }> { user.status } </div>
               </div>
             </div>
           </div>
