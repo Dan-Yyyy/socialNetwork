@@ -28,7 +28,7 @@ const Users = ( props ) => {
               </div>
               <div className={ users.content }>
                 <div className={ users.name }> { user.name } </div>
-                <div className={ users.status }> { user.status } </div>
+                <div className={ users.status }> { user.status != null ? users.status : 'Has not status' } </div>
               </div>
             </div>
           </div>
