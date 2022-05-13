@@ -58,3 +58,29 @@
     color: #212121
     font-size: 16px
     font-weight: 400
+
+.pagination
+  display: flex
+  justify-content: center
+  margin: 10px 0 30px
+  span
+    display: flex
+    align-items: center
+    justify-content: center
+    width: 25px
+    height: 25px
+    color: grey
+    font-size: 14px
+    font-weight: 500
+    cursor: pointer
+    transition: all 0.3s
+    border: 1px solid transparent
+    border-radius: 50%
+
+    &:hover
+      color: green
+
+  span.page_active
+    color: green
+    border: 1px solid green
+    border-radius: 50%
