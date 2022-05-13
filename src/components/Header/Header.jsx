@@ -1,5 +1,5 @@
 import React from 'react';
-import logo from './../../snapsvg-seeklogo.com.svg';
+import logo from './../../assets/images/snapsvg-seeklogo.com.svg';
 import header from './Header.module.sass';
 
 const Header = () => {

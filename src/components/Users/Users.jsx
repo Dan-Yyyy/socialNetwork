@@ -1,21 +1,38 @@
 import React from "react";
 import users from './Users.module.sass';
-import * as axios from 'axios';
-import userSmallAva from './../../user.png';
+import userSmallAva from './../../assets/images/user.png';
 
 const Users = ( props ) => {
-
-  if(props.state.length === 0) {
-    axios.get('https://social-network.samuraijs.com/api/1.0/users').then(response => {
-      props.setUsers(response.data.items)
-    })
+  // debugger
+  let pageCount = Math.ceil( props.totalUsersCount / props.pageSize);
+  let allPages = [];
+  for(let i = 1; i <= pageCount; i++ ) {
+    allPages.push(i);
   }
 
-  return(
-    <div>
+  const fixCountPage = 15;
+
+  return( 
+    <div>  
       <h3 className={ users.title }>Users</h3>
+      <div className={ users.pagination}>
+        {
+          allPages?.map((page, index) => {
+            if(index < fixCountPage) return (
+              <span 
+                key={ page } 
+                className={ props.currentPage === page ? users.page_active : null }
+                onClick={() => props.onChangePage(page)}
+              >
+                { page }
+              </span>
+            ); else return null
+          })
+        }
+      </div>
+
       {
-        props.state.map(user => 
+        props.users.map(user => 
           <div className={ users.users } key={ user.id }>
             <div className={ users.users__item }>
               <div className={ users.image }>
@@ -34,7 +51,7 @@ const Users = ( props ) => {
           </div>
         )
       }
-     
+    
     </div>
   )
 }
