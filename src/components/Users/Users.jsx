@@ -1,8 +1,8 @@
 import React from "react";
 import users from './Users.module.sass';
 import userSmallAva from './../../assets/images/user.png';
-import Navbar from "../Navbar/Navbar";
 import { NavLink } from "react-router-dom";
+import axios from "axios";
 
 const Users = ( props ) => {
   // debugger
@@ -43,8 +43,39 @@ const Users = ( props ) => {
                 </NavLink>
                 { 
                   user.followed 
-                  ? <button className={ users.button } onClick={ () => { props.unFollow(user.id) } }>Unfollow</button> 
-                  : <button className={ users.button } onClick={ () => { props.follow(user.id) } }>Follow</button>
+                  ? <button 
+                    disabled={ props.followingInProgress.some(id => id === user.id) }
+                    className={ users.button } 
+                    onClick={ () => { 
+                    props.toggleIsFollowing(true, user.id)
+                    axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${user.id}`, {
+                      withCredentials: true,
+                      headers: {
+                          'API-KEY': '84512d94-69e4-456a-81e9-1ab207d96e38',
+                        }
+                    }).then(response => {
+                        if(response.data.resultCode === 0){
+                          props.unFollow(user.id)
+                        }
+                        props.toggleIsFollowing(false, user.id)
+                      })
+                   } }>Unfollow</button> 
+                  : <button 
+                    disabled={ props.followingInProgress.some(id => id === user.id) }
+                    className={ users.button } onClick={ () => { 
+                    props.toggleIsFollowing(true, user.id)
+                    axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${user.id}`, {}, {
+                      withCredentials: true,
+                      headers: {
+                          'API-KEY': '84512d94-69e4-456a-81e9-1ab207d96e38',
+                        }
+                    }).then(response => {
+                        if(response.data.resultCode === 0){
+                          props.follow(user.id)
+                        }
+                        props.toggleIsFollowing(false, user.id)
+                      })
+                   } }>Follow</button>
                 } 
               </div>
               <div className={ users.content }>

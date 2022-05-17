@@ -1,6 +1,6 @@
 import React from 'react';
 import profileInfo from './ProfileInfo.module.sass';
-import imageContent from './../../../image.jpg';
+import imageContent from './../../../assets/images/image.jpg';
 import userImageDefault from './../../../assets/images/user.png';
 import Preloading from '../../Preloading/Preloading';
 
@@ -22,8 +22,8 @@ const ProfileInfo = (props) => {
           <div className={ profileInfo.user__name }> { props.profile.fullName } </div>
           { props.profile.aboutMe 
           ? <div className={ profileInfo.user__about }>
-            <span> About me: </span> { props.profile.aboutMe }
-          </div>
+              <span> About me: </span> { props.profile.aboutMe }
+            </div>
           : null }
         </div>
       </div>
