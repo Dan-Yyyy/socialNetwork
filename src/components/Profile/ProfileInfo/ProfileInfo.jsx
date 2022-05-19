@@ -3,6 +3,7 @@ import profileInfo from './ProfileInfo.module.sass';
 import imageContent from './../../../assets/images/image.jpg';
 import userImageDefault from './../../../assets/images/user.png';
 import Preloading from '../../Preloading/Preloading';
+import ProfileStatus from './ProfileStatus';
 
 const ProfileInfo = (props) => {
 
@@ -25,6 +26,7 @@ const ProfileInfo = (props) => {
               <span> About me: </span> { props.profile.aboutMe }
             </div>
           : null }
+          <ProfileStatus status={props.status} updateStatus={ props.updateStatus }/>
         </div>
       </div>
     </div>

@@ -22,7 +22,9 @@ const MyPosts = (props) => {
 					<button onClick={ addPost }>Добавить</button>
 				</div>
 				<div className={ myPosts.posts__items }>
-					{ props.profilePage.postData.map(postItem =>	<Post key={postItem.id} message={postItem.message} likesCount={postItem.likesCount}/> )}
+					{ props.profilePage.postData.map(postItem =>	
+						<Post key={postItem.id} message={postItem.message} likesCount={postItem.likesCount}/> 
+					)}
 				</div>
 			</div>
 		</div>        

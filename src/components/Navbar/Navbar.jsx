@@ -11,7 +11,7 @@ const Navbar = () => {
         <nav className={navbar.navigation}>
             <ul>
                 <li className={ navbar.navigation__item }>
-                    <NavLink to="/profile" className={({isActive}) => isActive ? navbar["navigation__link--active"] : null } >
+                    <NavLink to="/profile/24015" className={({isActive}) => isActive ? navbar["navigation__link--active"] : null } >
                         <AiOutlineUser size={ 16 } />
                         Profile
                     </NavLink>
