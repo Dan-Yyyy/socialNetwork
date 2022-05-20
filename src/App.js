@@ -1,4 +1,4 @@
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, useNavigate } from 'react-router-dom';
 import HeaderContainer from './components/Header/HeaderContainer';
 import './App.css'
 import Navbar from './components/Navbar/Navbar';
@@ -8,10 +8,20 @@ import News from './components/News/News';
 import Music from './components/Music/Music';
 import Settings from './components/Settings/Settings';
 import UsersContainer from './components/Users/UsersContainer';
-import Login from './components/Login/Login';
+import LoginContainer from './components/Login/Login';
+import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
 
 function App(props) {
-  
+  const {isAuth} = useSelector(state => state.auth)
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (isAuth){
+       return navigate("/");
+    } else {
+      return navigate("/login");
+    }
+ },[isAuth]);
   return (
     <div className="wrapper">
       <HeaderContainer />
@@ -19,13 +29,19 @@ function App(props) {
         <Navbar />
         <div className='container'>
           <Routes>
-            <Route path='/profile/:id' element={ <ProfileContainer/> } />
+            {isAuth ? 
+              <>
+              <Route path='/profile/:id' element={ <ProfileContainer/> } />
             <Route exact path='/dialogs' element={ <DialogsConteiner/> } />
             <Route exact path='/news' element={ <News/> } />
             <Route exact path='/music' element={ <Music/> } />
             <Route exact path='/users' element={ <UsersContainer/> } />
             <Route exact path='/settings' element={ <Settings/> } />
-            <Route exact path='/login' element={ <Login/> } />
+              </> : <>
+                <Route exact path='/login' element={ <LoginContainer/> } />
+            <Route exact path='*' element={ <LoginContainer/> } />
+              </>}
+            
           </Routes>
           </div>
       </main>

@@ -21,10 +21,17 @@ class ProfileStatus extends React.Component {
     this.props.updateStatus(newStatus)
   }
 
+  componentDidUpdate(prevProps) {
+    if(prevProps.status !== this.props.status) {
+      this.setState({
+        status: this.props.status
+      })
+    }
+  }
+
   onChangeText = (e) => {
-    let newStatus = e.target.value;
     this.setState({
-      status: newStatus
+      status: e.target.value
     })
   } 
 
