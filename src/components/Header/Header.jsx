@@ -8,7 +8,7 @@ import header from './Header.module.sass';
 
 const Header = (props) => {
 
-    const userImage = (props?.smollPhoto &&  userSmollPhoto) || "";
+    const userImage = props?.smollPhoto || userSmollPhoto;
     // const dispatch = useDispatch()
     return(
         <header className={header.header}>
@@ -16,13 +16,15 @@ const Header = (props) => {
                 <img src={logo} alt="logo" />
             </div>
             {props.login 
-                ? <div>
-                    <div className={ header.login_user }> 
-                        <span>{ props.login } </span> 
-                        <img src={ userImage } alt="" />
+                ?   <div className={ header.container }>
+                        <div className={ header.loginImage }> 
+                            <img src={ userImage } alt="" />
+                        </div>
+                        <div className={ header.loginData }>
+                            <span>{ props.login } </span> 
+                            <button onClick={ props.logout }>Log Out</button>
+                        </div>
                     </div>
-                    <button onClick={ props.logout }>Log Out</button>
-                </div>
                 : <div className="">
                     <NavLink to='/login'>Login</NavLink>
                 </div>
