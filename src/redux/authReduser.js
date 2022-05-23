@@ -24,7 +24,7 @@ export const authLogin = () => {
   return (dispatch) => {
     authAPI.me().then(response => {
       if(response.resultCode === 0) {
-        let { id, email, login } = response.data;
+        let { email, id, login } = response.data;
         dispatch(setUserAuthData(id, email, login, true));
       }
     })

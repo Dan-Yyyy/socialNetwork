@@ -17,7 +17,7 @@ function App(props) {
   const navigate = useNavigate();
   useEffect(() => {
     if (isAuth){
-       return navigate("/");
+       return navigate("/profile");
     } else {
       return navigate("/login");
     }

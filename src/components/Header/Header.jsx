@@ -6,11 +6,9 @@ import logo from './../../assets/images/snapsvg-seeklogo.com.svg';
 import userSmollPhoto from './../../assets/images/user.png';
 import header from './Header.module.sass';
 
-const Header = (props) => {
-
-    const userImage = props?.smollPhoto || userSmollPhoto;
-    // const dispatch = useDispatch()
-    return(
+const Header = (props) => {  
+    const userImage = props?.smollPhoto || userSmollPhoto; 
+     return(
         <header className={header.header}>
             <div className={ header.logo }>
                 <img src={logo} alt="logo" />
@@ -22,7 +20,7 @@ const Header = (props) => {
                         </div>
                         <div className={ header.loginData }>
                             <span>{ props.login } </span> 
-                            <button onClick={ props.logout }>Log Out</button>
+                            <span onClick={ props.logout } className={header.logout}>Log Out</span>
                         </div>
                     </div>
                 : <div className="">

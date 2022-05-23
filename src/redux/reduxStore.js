@@ -9,6 +9,6 @@ export const store = configureStore({
     dialogPage: dialogReducer,
     profilePage: profileReduser,
     usersPage: usersReduser,
-    auth: authReduser,
+    auth: authReduser
   },
 })

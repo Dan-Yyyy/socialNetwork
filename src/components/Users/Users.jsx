@@ -4,7 +4,6 @@ import userSmallAva from './../../assets/images/user.png';
 import { NavLink } from "react-router-dom";
  
 const Users = ( props ) => {
-  // debugger
   let pageCount = Math.ceil( props.totalUsersCount / props.pageSize);
   let allPages = [];
   for(let i = 1; i <= pageCount; i++ ) {
@@ -54,13 +53,12 @@ const Users = ( props ) => {
               </div>
               <div className={ users.content }>
                 <div className={ users.name }> { user.name } </div>
-                <div className={ users.status }> { user.status != null ? users.status : 'Has not status' } </div>
+                <div className={ users.status }> { user.status != null ? user.status : 'Has not status' }  </div>
               </div>
             </div>
           </div>
         )
-      }
-    
+      } 
     </div>
   )
 }
