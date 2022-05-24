@@ -1,16 +1,22 @@
 import myPosts from './MyPosts.module.sass';
-import React from 'react';
+import React, { useState } from 'react';
 import Post from './Post/Post';
 
-const MyPosts = (props) => {
+const MyPosts = ({addPost, addLike, profilePage}) => {
+
+	let [post, setPost] = useState('');
 	
-	let addPost = () => {
-		props.addNewPost();
+	let addPostInState = () => {
+		addPost(post);
+		setPost('');
 	};
 
-	let chengeText = (e) => {
-		let text = e.target.value;
-		props.updateNewPostText(text);
+	let changeText = (e) => {
+		setPost(e.target.value);
+	}
+
+	const click = (id) => {
+		addLike(id);
 	}
 
 	return(
@@ -18,12 +24,16 @@ const MyPosts = (props) => {
 			<h3 className={ myPosts.posts__title}>My posts</h3>
 			<div className={ myPosts.posts__container }>
 				<div className={ myPosts.posts__newPost }>
-					<textarea value={ props.profilePage.newPost } onChange={ chengeText }/>
-					<button onClick={ addPost }>Добавить</button>
+					<textarea onChange={ changeText } value={ post }/>
+					<button onClick={ addPostInState }>Добавить</button>
 				</div>
 				<div className={ myPosts.posts__items }>
-					{ props.profilePage.postData.map(postItem =>	
-						<Post key={postItem.id} message={postItem.message} likesCount={postItem.likesCount}/> 
+					{ profilePage.postData.map(postItem =>	
+						<Post key={postItem.id} 
+							message={postItem.message} 
+							likesCount={postItem.likesCount} 
+							idPost={postItem.id} 
+							click={ click }/> 
 					)}
 				</div>
 			</div>

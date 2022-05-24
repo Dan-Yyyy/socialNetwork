@@ -4,8 +4,6 @@ import Profile from './Profile';
 import { userProfile, updateStatus, getStatus } from './../../redux/profileReducer';
 import { useParams } from 'react-router-dom';
 
-// import profile from './Profile.module.sass';
-
 class ProfileContainer extends React.Component {
 
   componentDidMount() {

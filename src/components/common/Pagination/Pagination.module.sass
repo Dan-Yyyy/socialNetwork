@@ -1,0 +1,40 @@
+.pagination
+  display: flex
+  justify-content: center
+  margin: 10px 0 30px
+  span
+    display: flex
+    align-items: center
+    justify-content: center
+    width: 25px
+    height: 25px
+    color: grey
+    font-size: 14px
+    font-weight: 500
+    cursor: pointer
+    transition: all 0.3s
+    border: 1px solid transparent
+    border-radius: 50%
+
+    &:hover
+      color: green
+
+  span.page_active
+    color: green
+    border: 1px solid green
+    border-radius: 50%
+
+.arrow
+  display: flex
+  align-items: center
+  border: none
+  outline: none
+  background-color: unset
+  cursor: pointer
+  svg
+    path
+      transition: all 0.3s
+    &:hover
+      path
+        fill: green
+        stroke: green

@@ -2,9 +2,8 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import navbar from './Navbar.module.sass';
 import { AiOutlineUser } from 'react-icons/ai';
-import { BiMessageSquare, BiNews } from 'react-icons/bi';
-import { BsHeadphones } from 'react-icons/bs';
-import { FiSettings, FiUsers } from 'react-icons/fi';
+import { BiMessageSquare } from 'react-icons/bi';
+import { FiUsers } from 'react-icons/fi';
 
 const Navbar = () => {
     return(
@@ -23,28 +22,10 @@ const Navbar = () => {
                     </NavLink>
                 </li>
                 <li className={ navbar.navigation__item }>
-                    <NavLink to="/news" className={({isActive}) => isActive ? navbar["navigation__link--active"] : null }>
-                        <BiNews size={ 16 } />
-                        News
-                    </NavLink>
-                </li>
-                <li className={ navbar.navigation__item }>
-                    <NavLink to="/music" className={({isActive}) => isActive ? navbar["navigation__link--active"] : null }>
-                        <BsHeadphones size={ 16 } />
-                        Music
-                    </NavLink>
-                </li>
-                <li className={ navbar.navigation__item }>
                     <NavLink to="/users" className={({isActive}) => isActive ? navbar["navigation__link--active"] : null }>
                         <FiUsers size={ 16 } />
                         Find users
                     </NavLink>
-                </li>
-                <li className={ navbar.navigation__item }>
-                    <NavLink to="/settings" className={({isActive}) => isActive ? navbar["navigation__link--active"] : null }>
-                        <FiSettings size={ 16 } />
-                        Settings
-                    </NavLink> 
                 </li>
             </ul>
         </nav>

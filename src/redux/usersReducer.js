@@ -67,38 +67,35 @@ export const toggleFetching = (isFetching) => ({ type: TOGGLE_FETCHING, isFetchi
 export const toggleIsFollowingProgress = (isFetching) => ({ type: TOGGLE_IS_FOLLOWING_PROGRESS, isFetching});
 
 export const getUsers = (currentPage, pageSize) => {
-  return (dispatch) => {
+  return async (dispatch) => {
     dispatch(toggleFetching(true));
-    userAPI.getUsers(currentPage, pageSize).then(response => {
-      dispatch(toggleFetching(false));
-      dispatch(setUsers(response.items));
-      dispatch(setTotalUsers(response.totalCount));
-    })
+    dispatch(setCurrentPage(currentPage));
+    const response = await userAPI.getUsers(currentPage, pageSize);
+    dispatch(toggleFetching(false));
+    dispatch(setUsers(response.items));
+    dispatch(setTotalUsers(response.totalCount));
   }
+};
+
+const followUnfollowFlow = async (dispatch, apiMethod, actionCreator, idUser) => {
+  dispatch(toggleIsFollowingProgress(true, idUser));
+    const response = await apiMethod( idUser );
+    if(response.resultCode === 0){
+      dispatch(actionCreator( idUser ));
+    };
+    dispatch(toggleIsFollowingProgress(false, idUser))
 };
 
 export const unFollow = (idUser) => {
-  return (dispatch) => {
-    dispatch(toggleIsFollowingProgress(true, idUser));
-      userAPI.unFollow( idUser ).then(response => {
-          if(response.resultCode === 0){
-            dispatch(unFollowSucces( idUser ));
-          }
-          dispatch(toggleIsFollowingProgress(false, idUser))
-        })
-  }
+  return async (dispatch) => {
+    followUnfollowFlow(dispatch, userAPI.unFollow.bind(userAPI), unFollowSucces, idUser);
+  };
 };
 
 export const follow = (idUser) => {
-  return (dispatch) => {
-    dispatch(toggleIsFollowingProgress(true, idUser));
-    userAPI.follow( idUser ).then(response => {
-        if(response.resultCode === 0){
-          dispatch(followSucces( idUser ));
-        }
-        dispatch(toggleIsFollowingProgress(false, idUser));
-      })
-  }
-}
+  return async (dispatch) => {
+    followUnfollowFlow(dispatch, userAPI.follow.bind(userAPI), followSucces, idUser);
+  };
+};
 
 export default usersReduser;
